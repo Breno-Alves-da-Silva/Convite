@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Um Convite Especial</title>
+    
+    <!-- Conecta com o seu arquivo de estilo separado -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ================= TELA 1: O CONVITE ================= -->
+    <div class="painel-central" id="tela1">
+        <img src="https://media1.tenor.com/m/jKeEsyBbz6IAAAAC/turtle-love.gif" alt="Ursinho com rosa" class="ursinho">
+        <h2>Você aceita sair para um encontro comigo?</h2>
+        <p class="mensagem-erro">Acho que você clicou errado...</p>
+
+        <div class="botoes">
+            <button id="btnSim" class="btn-sim">SIM</button>
+            <button id="btnNo" class="btn-nao">NÃO</button>
+        </div>
+    </div>
+
+    <!-- ================= TELA 2: A CONFIRMAÇÃO ================= -->
+    <div class="painel-central" id="tela2" style="display: none;">
+        <img src="https://media1.tenor.com/m/Je60bwD_dcoAAAAC/yes-bear.gif" alt="Ursinhos felizes" class="ursinho">
+        <h2>Eba! Encontro confirmado! 😍</h2>
+        
+        <div class="detalhes-encontro">
+            <p>📅 <strong>Data:</strong> Sábado que vem</p>
+            <p>⏰ <strong>Horário:</strong> Às 20:00</p>
+            <p>📍 <strong>Local:</strong> Lugar secreto</p>
+        </div>
+        
+        <p class="mensagem-final">Mal posso esperar! Deixe essa data reservada para nós. ❤️</p>
+    </div>
+
+    <!-- Conecta com o seu arquivo JavaScript separado -->
+    <script src="script.js"></script>
+
+</body>
+</html>
