@@ -8,12 +8,11 @@ const tela3 = document.getElementById("tela3");
 
 const mensagemErro = document.querySelector(".mensagem-erro");
 const selectDia = document.getElementById("dia");
-const inputHora = document.getElementById("hora");
+const selectHora = document.getElementById("hora");
 
 const resumoDia = document.getElementById("resumoDia");
 const resumoHora = document.getElementById("resumoHora");
 
-// URL do seu Google Apps Script já configurada:
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxNyLBWTaxwWPBvIOK-qeWvYw3_SQRlSQ3WMx_P-CTcK2QE6vfxHdEum0tYeKtYC_ggfw/exec";
 
 function fugir(e) {
@@ -36,25 +35,21 @@ function fugir(e) {
     btnNo.style.top = randomY + "px";
 }
 
-// Quando clica em SIM, abre a tela de seleção
 function aceitouSim() {
     tela1.style.display = "none";
     tela2.style.display = "block";
 }
 
-// Quando ela escolhe o dia/hora e clica em Confirmar
 function confirmarEscolha() {
     const diaEscolhido = selectDia.value; // "sabado" ou "domingo"
-    const horaEscolhida = inputHora.value; // ex: "20:00"
+    const horaEscolhida = selectHora.value; // ex: "14:00", "20:00"
 
-    // Atualiza a tela de confirmação visual
     resumoDia.textContent = diaEscolhido === "sabado" ? "Próximo Sábado" : "Próximo Domingo";
     resumoHora.textContent = `Às ${horaEscolhida}`;
 
     tela2.style.display = "none";
     tela3.style.display = "block";
 
-    // Envia a escolha para o seu Google Apps Script
     fetch(WEB_APP_URL, {
         method: "POST",
         mode: "no-cors",
