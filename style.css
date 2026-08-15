@@ -138,3 +138,24 @@ button {
     width: 100%;
     margin-top: 15px;
 }
+/* Caixa da Contagem Regressiva */
+.caixa-timer {
+    margin-top: 18px;
+    padding: 12px;
+    background-color: #fff4f5;
+    border-radius: 12px;
+    border: 1px solid #ffccd5;
+}
+
+.titulo-timer {
+    margin: 0 0 6px 0;
+    font-size: 13px;
+    color: #666;
+    font-weight: bold;
+}
+
+.contador {
+    font-size: 18px;
+    font-weight: bold;
+    color: #d9383a;
+}
