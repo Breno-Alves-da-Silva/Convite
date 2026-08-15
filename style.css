@@ -106,3 +106,35 @@ button {
     font-size: 14px;
     margin-top: 15px;
 }
+/* Formulário de seleção de dia e hora */
+.formulario-encontro {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: 15px;
+    gap: 8px;
+}
+
+.formulario-encontro label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #444;
+    margin-top: 8px;
+}
+
+.campo-selecao {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Botão de confirmação */
+.btn-confirmar {
+    background-color: #28a745;
+    color: white;
+    width: 100%;
+    margin-top: 15px;
+}

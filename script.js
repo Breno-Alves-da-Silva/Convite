@@ -1,11 +1,19 @@
-// Captura os elementos da página HTML
 const btnNo = document.getElementById("btnNo");
 const btnSim = document.getElementById("btnSim");
+const btnConfirmar = document.getElementById("btnConfirmar");
+
 const tela1 = document.getElementById("tela1");
 const tela2 = document.getElementById("tela2");
-const mensagemErro = document.querySelector(".mensagem-erro");
+const tela3 = document.getElementById("tela3");
 
-// Cole aqui a URL do seu Web App do Google Apps Script
+const mensagemErro = document.querySelector(".mensagem-erro");
+const selectDia = document.getElementById("dia");
+const inputHora = document.getElementById("hora");
+
+const resumoDia = document.getElementById("resumoDia");
+const resumoHora = document.getElementById("resumoHora");
+
+// URL do seu Google Apps Script já configurada:
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxNyLBWTaxwWPBvIOK-qeWvYw3_SQRlSQ3WMx_P-CTcK2QE6vfxHdEum0tYeKtYC_ggfw/exec";
 
 function fugir(e) {
@@ -28,20 +36,37 @@ function fugir(e) {
     btnNo.style.top = randomY + "px";
 }
 
-function aceitou() {
-    // Muda a tela imediatamente para a pessoa ver que deu certo
+// Quando clica em SIM, abre a tela de seleção
+function aceitouSim() {
     tela1.style.display = "none";
     tela2.style.display = "block";
+}
 
-    // Envia o aviso e agenda o evento no Google Agenda em segundo plano
-    if (WEB_APP_URL && WEB_APP_URL !== "https://script.google.com/macros/s/AKfycbxNyLBWTaxwWPBvIOK-qeWvYw3_SQRlSQ3WMx_P-CTcK2QE6vfxHdEum0tYeKtYC_ggfw/exec") {
-        fetch(WEB_APP_URL, {
-            method: "POST",
-            mode: "no-cors"
-        }).catch(err => console.error("Erro ao agendar:", err));
-    }
+// Quando ela escolhe o dia/hora e clica em Confirmar
+function confirmarEscolha() {
+    const diaEscolhido = selectDia.value; // "sabado" ou "domingo"
+    const horaEscolhida = inputHora.value; // ex: "20:00"
+
+    // Atualiza a tela de confirmação visual
+    resumoDia.textContent = diaEscolhido === "sabado" ? "Próximo Sábado" : "Próximo Domingo";
+    resumoHora.textContent = `Às ${horaEscolhida}`;
+
+    tela2.style.display = "none";
+    tela3.style.display = "block";
+
+    // Envia a escolha para o seu Google Apps Script
+    fetch(WEB_APP_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            dia: diaEscolhido,
+            hora: horaEscolhida
+        })
+    }).catch(err => console.error("Erro ao agendar:", err));
 }
 
 btnNo.addEventListener("mouseover", fugir);
 btnNo.addEventListener("touchstart", fugir);
-btnSim.addEventListener("click", aceitou);
+btnSim.addEventListener("click", aceitouSim);
+btnConfirmar.addEventListener("click", confirmarEscolha);
