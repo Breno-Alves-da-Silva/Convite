@@ -33,6 +33,13 @@ body {
     object-fit: cover;
 }
 
+.introducao-convite {
+    margin: 18px 0 -10px;
+    color: #8f2638;
+    font-size: 15px;
+    font-weight: bold;
+}
+
 /* Estilo do título da pergunta */
 h2 {
     color: #333;
