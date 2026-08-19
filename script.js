@@ -44,7 +44,7 @@ if (btnNo) {
 
 // Lógica de confirmação da escolha (escolha.html)
 if (btnConfirmar) {
-    btnConfirmar.addEventListener("click", function () {
+    btnConfirmar.addEventListener("click", async function () {
         const diaEscolhido = selectDia.value;
         const horaEscolhida = selectHora.value;
         const localEscolhido = selectLocal.value;
@@ -55,18 +55,28 @@ if (btnConfirmar) {
         localStorage.setItem("localEncontro", localEscolhido);
         localStorage.setItem("localEncontroTexto", localEscolhidoTexto);
 
-        fetch(WEB_APP_URL, {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                dia: diaEscolhido,
-                hora: horaEscolhida,
-                local: localEscolhido
-            })
-        }).catch(err => console.error("Erro ao agendar:", err));
+        btnConfirmar.disabled = true;
+        btnConfirmar.textContent = "GUARDANDO NOSSO ENCONTRO... ❤️";
 
-        window.location.href = "confirmacao.html";
+        try {
+            await fetch(WEB_APP_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
+                body: JSON.stringify({
+                    dia: diaEscolhido,
+                    hora: horaEscolhida,
+                    local: localEscolhido
+                })
+            });
+
+            window.location.href = "confirmacao.html";
+        } catch (err) {
+            console.error("Erro ao agendar:", err);
+            btnConfirmar.disabled = false;
+            btnConfirmar.textContent = "TENTAR NOVAMENTE";
+            alert("Não consegui guardar o encontro agora. Tenta mais uma vez? ❤️");
+        }
     });
 }
 
