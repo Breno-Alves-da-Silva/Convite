@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escolha o Dia e Horário</title>
+    <title>Escolha o Encontro</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="painel-central">
         <img src="https://media1.tenor.com/m/jKeEsyBbz6IAAAAC/turtle-love.gif" alt="Ursinho pensando" class="ursinho">
-        <h2>Qual o melhor dia e horário para você? 🥰</h2>
+        <h2>Como você imagina o nosso encontro? 🥰</h2>
 
         <div class="formulario-encontro">
             <label for="dia">Escolha o dia:</label>
@@ -21,17 +21,22 @@
 
             <label for="hora">Escolha o horário:</label>
             <select id="hora" class="campo-selecao">
-                <option value="13:00">13:00 (13h)</option>
-                <option value="14:00">14:00 (14h)</option>
                 <option value="15:00">15:00 (15h)</option>
                 <option value="16:00">16:00 (16h)</option>
                 <option value="17:00">17:00 (17h)</option>
                 <option value="18:00">18:00 (18h)</option>
-                <option value="19:00">19:00 (19h)</option>
-                <option value="20:00" selected>20:00 (20h)</option>
+                <option value="19:00" selected>19:00 (19h)</option>
+                <option value="20:00">20:00 (20h)</option>
                 <option value="21:00">21:00 (21h)</option>
-                <option value="22:00">22:00 (22h)</option>
-                <option value="23:00">23:00 (23h)</option>
+            </select>
+
+            <label for="local">Escolha o tipo de encontro:</label>
+            <select id="local" class="campo-selecao">
+                <option value="jantar">🍝 Jantar</option>
+                <option value="cafe">☕ Café</option>
+                <option value="cinema">🎬 Cinema</option>
+                <option value="lanche">🍔 Lanche</option>
+                <option value="surpresa">✨ Pode me surpreender</option>
             </select>
 
             <button id="btnConfirmar" class="btn-confirmar">CONFIRMAR ENCONTRO</button>

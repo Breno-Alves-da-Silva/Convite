@@ -4,9 +4,11 @@ const mensagemErro = document.querySelector(".mensagem-erro");
 
 const selectDia = document.getElementById("dia");
 const selectHora = document.getElementById("hora");
+const selectLocal = document.getElementById("local");
 
 const resumoDia = document.getElementById("resumoDia");
 const resumoHora = document.getElementById("resumoHora");
+const resumoLocal = document.getElementById("resumoLocal");
 const elementoContador = document.getElementById("contador");
 
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxNyLBWTaxwWPBvIOK-qeWvYw3_SQRlSQ3WMx_P-CTcK2QE6vfxHdEum0tYeKtYC_ggfw/exec";
@@ -45,9 +47,13 @@ if (btnConfirmar) {
     btnConfirmar.addEventListener("click", function () {
         const diaEscolhido = selectDia.value;
         const horaEscolhida = selectHora.value;
+        const localEscolhido = selectLocal.value;
+        const localEscolhidoTexto = selectLocal.options[selectLocal.selectedIndex].text;
 
         localStorage.setItem("diaEncontro", diaEscolhido);
         localStorage.setItem("horaEncontro", horaEscolhida);
+        localStorage.setItem("localEncontro", localEscolhido);
+        localStorage.setItem("localEncontroTexto", localEscolhidoTexto);
 
         fetch(WEB_APP_URL, {
             method: "POST",
@@ -55,7 +61,8 @@ if (btnConfirmar) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 dia: diaEscolhido,
-                hora: horaEscolhida
+                hora: horaEscolhida,
+                local: localEscolhido
             })
         }).catch(err => console.error("Erro ao agendar:", err));
 
@@ -64,13 +71,16 @@ if (btnConfirmar) {
 }
 
 // Lógica da tela de confirmação (confirmacao.html)
-if (resumoDia && resumoHora) {
+if (resumoDia && resumoHora && resumoLocal) {
     const diaSalvo = localStorage.getItem("diaEncontro");
     const horaSalva = localStorage.getItem("horaEncontro");
+    const localSalvo = localStorage.getItem("localEncontro");
+    const localSalvoTexto = localStorage.getItem("localEncontroTexto");
 
-    if (diaSalvo && horaSalva) {
+    if (diaSalvo && horaSalva && localSalvo) {
         resumoDia.textContent = diaSalvo === "sabado" ? "Próximo Sábado" : "Próximo Domingo";
         resumoHora.textContent = `Às ${horaSalva}`;
+        resumoLocal.textContent = localSalvoTexto || localSalvo;
 
         // Dispara a chuva de confetes/corações assim que a página carrega
         if (typeof confetti === "function") {

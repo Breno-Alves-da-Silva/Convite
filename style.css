@@ -21,6 +21,8 @@ body {
     width: 85%;
     max-width: 400px;
     box-sizing: border-box;
+    max-height: calc(100vh - 24px);
+    overflow-y: auto;
 }
 
 /* Tamanho das imagens dos ursinhos */
@@ -158,4 +160,20 @@ button {
     font-size: 18px;
     font-weight: bold;
     color: #d9383a;
+}
+
+@media (max-height: 700px) {
+    .painel-central {
+        padding: 20px;
+    }
+
+    .ursinho {
+        width: 150px;
+        height: 110px;
+    }
+
+    h2 {
+        margin-top: 12px;
+        font-size: 20px;
+    }
 }
